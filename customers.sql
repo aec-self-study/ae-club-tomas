@@ -9,7 +9,9 @@ from
   join `analytics-engineers-club.coffee_shop.orders` o
     on customers.id = o.customer_id
 group by
-  1,2,3
+  customers.id, 
+  customers.name,
+  customers.email,
 order by
   first_order_at
 limit 5
