@@ -6,7 +6,7 @@ select
   count(orders.id) as number_of_orders
 from 
   `analytics-engineers-club.coffee_shop.customers` customers
-  join `analytics-engineers-club.coffee_shop.orders` orders
+  inner join `analytics-engineers-club.coffee_shop.orders` orders
     on customers.id = orders.customer_id
 group by
   customers.id, 
@@ -14,5 +14,6 @@ group by
   customers.email,
 order by
   first_order_at
-limit 5
+limit 
+  5
 
