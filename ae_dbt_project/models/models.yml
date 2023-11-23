@@ -1,0 +1,13 @@
+version: 2
+ 
+models:
+  - name: customers
+    description: Cleaned up data for our customers
+    columns:
+      - name: id
+        description: Primary key of the model
+        tests:
+          - unique
+          - not_null
+      - name: name
+        description: Customer name      
