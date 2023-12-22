@@ -6,10 +6,13 @@ select
     customers.email,
     min(orders.created_at) as first_order_at,
     count(orders.id) as number_of_orders
-from `analytics-engineers-club.coffee_shop.customers` customers
+from 
+    {{ source('coffee_shop', 'customers') }} customers
 join
-    `analytics-engineers-club.coffee_shop.orders` orders
+    {{ source('coffee_shop', 'orders') }} orders
     on customers.id = orders.customer_id
-group by customers.id, customers.name, customers.email
-order by first_order_at
+group by 
+    customers.id, customers.name, customers.email
+order by 
+    first_order_at
 limit 5
