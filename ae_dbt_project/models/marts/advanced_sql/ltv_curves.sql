@@ -28,6 +28,6 @@ with purchases as (
 )
 
 select customer_id, week_year, revenue
-    , sum(revenue) over (partition by customer_id, week_year) as cumulative_revenue
+    , sum(revenue) over (partition by customer_id order by week_year rows between unbounded preceding and current row) as cumulative_revenue
 from purchases
 order by customer_id, week_year
