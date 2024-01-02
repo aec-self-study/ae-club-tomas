@@ -4,7 +4,7 @@
 with stitched_pageviews as (
   select
     *,
-    min(visitor_id) over (partition by customer_id) as stitched_visitor_id
+    first_value(visitor_id ignore nulls) over (partition by customer_id) as stitched_visitor_id
   from {{ ref('stg_pageviews') }}
 )
 
